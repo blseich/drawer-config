@@ -726,6 +726,11 @@ what are your details?"></textarea>
                   <a download="config.json" class="btn btn-primary btn-block" role="button" ng-href="data:text/json;charset=utf-8,{{myEncodeJson(promos)}}" ng-click="analytics('IO','export','Production')">Export config.json file</a>
                 </div>
               </div>
+              <div class="row" style="margin-top: 10px">
+                <div class="col-sm-6" style="margin-left: 50%">
+                  <a download="config_v2.json" class="btn btn-primary btn-block" role="button" ng-href="data:text/json;charset=utf-8,{{myEncodeJsonToV2(promos)}}" ng-click="analytics('IO','export','Production')">Export config_v2.json file</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1219,6 +1224,232 @@ what are your details?"></textarea>
         return stringedJSON;
         $scope.tempSave();
       };
+
+      $scope.myEncodeJsonToV2 = function(obj) {
+        newObj = this.v2Conversion((obj));
+        var stringedJSON = "promoObjCallback(" + JSON.stringify(newObj) + ");";
+        return stringedJSON;
+        $scope.tempSave();
+      }
+
+      $scope.v2Conversion = function(oldObj) {
+        var newObj = {
+            "style": {
+                "height": "293px"
+            },
+            "options": {
+                "desktopVisible": true,
+                "mobileVisible": true,
+                "excludePageTypes": [
+                    "product"
+                ]
+            },
+            "autoFire": "disabled",
+            "disabledAutoFirePageTypes": [],
+            "promos": [],
+            "drawerToggle": {
+                "openedState": {
+                    "name": "LayoutComponent",
+                    "type": "sitewide",
+                    "data": {
+                        "desktopAndMobile": {
+                            "shouldDisplay": true,
+                            "data": {
+                                "components": [{
+                                        "name": "LayoutComponent",
+                                        "type": "sitewide",
+                                        "data": {
+                                            "desktopAndMobile": {
+                                                "shouldDisplay": true,
+                                                "data": {
+                                                    "components": [{
+                                                            "name": "TextHeadline",
+                                                            "type": "sitewide",
+                                                            "data": {
+                                                                "className": {
+                                                                    "desktop": "promoDrawer__title",
+                                                                    "mobile": "promoDrawer__title"
+                                                                },
+                                                                "text": "My Offers"
+                                                            }
+                                                        },
+                                                        {
+                                                            "name": "TextHeadline",
+                                                            "type": "sitewide",
+                                                            "data": {
+                                                                "className": {
+                                                                    "desktop": "promoDrawer__subtitle",
+                                                                    "mobile": "promoDrawer__subtitle"
+                                                                },
+                                                                "text": "(2 available)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": {
+                                                        "flex-direction": "column"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "LayoutComponent",
+                                        "type": "sitewide",
+                                        "data": {
+                                            "desktopAndMobile": {
+                                                "shouldDisplay": true,
+                                                "data": {
+                                                    "components": [],
+                                                    "style": {
+                                                        "transition-duration": ".2s",
+                                                        "transition-timing-function": "ease-out"
+                                                    },
+                                                    "classes": "promoDrawer__handlebar__icon"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "style": {}
+                            }
+                        }
+                    }
+                },
+                "closedState": {
+                    "name": "LayoutComponent",
+                    "type": "sitewide",
+                    "data": {
+                        "desktopAndMobile": {
+                            "shouldDisplay": true,
+                            "data": {
+                                "components": [{
+                                        "name": "LayoutComponent",
+                                        "type": "sitewide",
+                                        "data": {
+                                            "desktopAndMobile": {
+                                                "shouldDisplay": true,
+                                                "data": {
+                                                    "components": [{
+                                                            "name": "TextHeadline",
+                                                            "type": "sitewide",
+                                                            "data": {
+                                                                "className": {
+                                                                    "desktop": "promoDrawer__title",
+                                                                    "mobile": "promoDrawer__title"
+                                                                },
+                                                                "text": "30% Off Your Order"
+                                                            }
+                                                        },
+                                                        {
+                                                            "name": "TextHeadline",
+                                                            "type": "sitewide",
+                                                            "data": {
+                                                                "className": {
+                                                                    "desktop": "promoDrawer__subtitle",
+                                                                    "mobile": "promoDrawer__subtitle"
+                                                                },
+                                                                "text": "Tap For More Ways To Save"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": {
+                                                        "flex-direction": "column"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "LayoutComponent",
+                                        "type": "sitewide",
+                                        "data": {
+                                            "desktopAndMobile": {
+                                                "shouldDisplay": true,
+                                                "data": {
+                                                    "components": [],
+                                                    "style": {
+                                                        "transition-duration": ".2s",
+                                                        "transition-timing-function": "ease-out"
+                                                    },
+                                                    "classes": "promoDrawer__handlebar__icon"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "style": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "pd_id": "pdid_1534541049574"
+        };
+        newObj.autoFire = oldObj.global.autoFire ? "load" : "disabled";
+        newObj.drawerToggle.openedState.data.desktopAndMobile.data.components[0].data.desktopAndMobile.data.components[0].data.text = oldObj.global.textElements.openHeaderOffers;
+        newObj.drawerToggle.openedState.data.desktopAndMobile.data.components[0].data.desktopAndMobile.data.components[1].data.text = oldObj.global.promos.length + " " + oldObj.global.textElements.openHeaderAvailable;
+        newObj.drawerToggle.closedState.data.desktopAndMobile.data.components[0].data.desktopAndMobile.data.components[0].data.text = oldObj.global.textElements.headerText;
+        newObj.drawerToggle.closedState.data.desktopAndMobile.data.components[0].data.desktopAndMobile.data.components[1].data.text = oldObj.global.textElements.subHeaderText;
+
+        for (var i = 0; i < oldObj.global.promos.length ; i++) {
+          var promoObj = {
+              bannerContent: {},
+              applicationDetails: {},
+              legalDetails: {}
+            }
+          if (oldObj.global.promos[i].bannerContent.imgOrHTML === "html") {
+            promoObj.bannerContent = {
+              name: "HTMLInjectionComponent",
+              type: "sitewide",
+              data: {
+                html: oldObj.global.promos[i].bannerContent.HTML.localHTML,
+                style: {}
+              }
+            }
+          } else {
+            promoObj.bannerContent = {
+              name: "Image",
+              type: "sitewide",
+              data: {
+               largeImg: oldObj.global.promos[i].bannerContent.img.images.dataUri,
+               smallImg: oldObj.global.promos[i].bannerContent.img.images.dataUri,
+               imageMap: {
+                identifier: oldObj.global.promos[i].bannerContent.img.contentParameters.imageMap.match(/<map name="(.|[^"]*)">/i)[1],
+                areaAttributes: parseImageMap(oldObj.global.promos[i].bannerContent.img.contentParameters.imageMap)
+               },
+               classes: "promoDrawer__content__item__banner",
+               altText: "headline",
+               style: {}
+              }
+            }
+
+          }
+          promoObj.applicationDetails.type = oldObj.global.promos[i].tapContent.displayType === 'tap' ? 'tap' : 'auto';
+          promoObj.applicationDetails.message = oldObj.global.promos[i].tapContent.displayType === 'tap' ? '' : oldObj.global.promos[i].tapContent.autoApply;
+          
+          promoObj.legalDetails.popupTextLink = oldObj.global.promos[i].tapContent.popupTextLink || "DETAILS";
+          promoObj.legalDetails.legalOverride = oldObj.global.promos[i].tapContent.legalOverride;
+          promoObj.legalDetails.genericCodeId = oldObj.global.promos[i].tapContent.genericCodeId;
+
+          newObj.promos.push(promoObj)
+        }
+
+        return newObj;
+      }
+
+      var parseImageMap = function(areaMapHtml) {
+        return areaMapHtml
+          .match(/<area [^>]+>/g)
+          .map((areaHtml) => areaHtml.match(/([a-zA-z]+)="([^"]+)"/gi)
+            .map((str) => str
+              .replace(/"/g, "")
+              .split("=")
+            )
+          ).map((attrArray) => attrArray.reduce((acc, curr) => {
+              acc[curr[0]]=curr[1];
+              return acc;
+            }, {}))
+      }
 
       $scope.wipUrl = function() {
         var ulocale;var brandPreviewUrl;
